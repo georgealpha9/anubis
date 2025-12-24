@@ -1,28 +1,28 @@
 :root {
-  --body-sans-font: Geist, sans-serif;
-  --body-preformatted-font: Iosevka Curly Iaso, monospace;
-  --body-title-font: Podkova, serif;
+  --body-sans-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --body-preformatted-font: Consolas, Monaco, "Courier New", monospace;
+  --body-title-font: Georgia, serif;
 
-  --background: #1d2021;
-  --text: #f9f5d7;
-  --text-selection: #d3869b;
-  --preformatted-background: #3c3836;
-  --link-foreground: #b16286;
-  --link-background: #282828;
-  --blockquote-border-left: 1px solid #bdae93;
+  --background: #1a1a1a;
+  --text: #e0e0e0;
+  --text-selection: #4a90e2;
+  --preformatted-background: #2a2a2a;
+  --link-foreground: #4a90e2;
+  --link-background: #2a2a2a;
+  --blockquote-border-left: 1px solid #666666;
 
-  --progress-bar-outline: #b16286 solid 4px;
-  --progress-bar-fill: #b16286;
+  --progress-bar-outline: #4a90e2 solid 4px;
+  --progress-bar-fill: #4a90e2;
 }
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #f9f5d7;
-    --text: #1d2021;
-    --text-selection: #d3869b;
-    --preformatted-background: #ebdbb2;
-    --link-foreground: #b16286;
-    --link-background: #fbf1c7;
-    --blockquote-border-left: 1px solid #655c54;
+    --background: #ffffff;
+    --text: #333333;
+    --text-selection: #b3d9ff;
+    --preformatted-background: #f5f5f5;
+    --link-foreground: #0066cc;
+    --link-background: #f5f5f5;
+    --blockquote-border-left: 1px solid #cccccc;
   }
 }
 
