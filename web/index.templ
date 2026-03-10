@@ -102,6 +102,7 @@ templ base(title string, body templ.Component, impressum *config.Impressum, chal
           src={ "/.within.website/x/cmd/anubis/static/img/delta10.png?cacheBuster=" + anubis.Version }
         />
         <h1>{ title }</h1>
+        @body
         </div>
 			</main>
 		</body>
@@ -110,8 +111,6 @@ templ base(title string, body templ.Component, impressum *config.Impressum, chal
 
 templ errorPage(message, mail, code string, localizer *localization.SimpleLocalizer) {
 	<div class="centered-div">
-			src={ "/.within.website/x/cmd/anubis/static/img/delta10.png?cacheBuster=" + anubis.Version }
-		/>
 		<p>{ message }.</p>
 		if code != "" {
 			<code><pre>{ code }</pre></code>
@@ -131,10 +130,6 @@ templ errorPage(message, mail, code string, localizer *localization.SimpleLocali
 
 templ StaticHappy(localizer *localization.SimpleLocalizer) {
 	<div class="centered-div">
-		<img
-			style="width:100%;max-width:256px;"
-			src={ "/.within.website/x/cmd/anubis/static/img/delta10.png?cacheBuster=" + anubis.Version }
-		/>
 		<p>{ localizer.T("static_check_endpoint") }</p>
 	</div>
 }
@@ -162,7 +157,6 @@ templ bench(localizer *localization.SimpleLocalizer) {
 			></tbody>
 		</table>
 		<div class="centered-div">
-			<img id="image" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/delta10.png?cacheBuster=" + anubis.Version }/>
 			<p id="status" style="max-width:256px">{ localizer.T("loading") }</p>
 			<script async type="module" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/js/bench.mjs?cacheBuster=" + anubis.Version }></script>
 			<div id="sparkline"></div>
