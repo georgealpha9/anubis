@@ -1,12 +1,10 @@
 bots:
-- name: deny
-  user_agent_regex: DENY
-  action: DENY
-
-- name: challenge
-  user_agent_regex: CHALLENGE
-  action: CHALLENGE
-
-status_codes:
-  CHALLENGE: 401
-  DENY: 403
+  # Punish any bot with "bot" in the user-agent string
+  # This is known to have a high false-positive rate, use at your own risk
+  - name: generic-bot-catchall
+    user_agent_regex: (?i:bot|crawler)
+    action: CHALLENGE
+    challenge:
+      difficulty: 10 # impossible
+      report_as: 4 # lie to the operator
+      algorithm: slow # intentionally waste CPU cycles and time

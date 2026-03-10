@@ -48,14 +48,43 @@ templ base(title string, body templ.Component, impressum *config.Impressum, chal
           overflow: hidden;
           margin: 1rem 0 2rem;
 					outline-offset: 2px;
-					outline: #b16286 solid 4px;
+					outline: var(--progress-bar-outline);
 				}
 
         .bar-inner {
-            background-color: #b16286;
+            background-color: var(--progress-bar-fill);
             height: 100%;
             width: 0;
             transition: width 0.25s ease-in;
+        }
+
+        input, select {
+            background-color: var(--surface-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 0.375rem;
+            padding: 0.25rem 0.5rem;
+            color: var(--text);
+            font-size: 0.875rem;
+        }
+
+        input:focus, select:focus {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 1px;
+            border-color: var(--accent-primary);
+        }
+
+        label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        footer {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: var(--link-foreground);
         }
     	</style>
 			@templ.JSONScript("anubis_version", anubis.Version)
@@ -64,27 +93,16 @@ templ base(title string, body templ.Component, impressum *config.Impressum, chal
 			@templ.JSONScript("anubis_public_url", anubis.PublicUrl)
 		</head>
 		<body id="top">
+
 			@honeypotLink(fmt.Sprintf("%shoneypot/%s/init", anubis.APIPrefix, uuid.NewString()))
 			<main>
-				<h1 id="title" class="centered-div">{ title }</h1>
-				@body
-				<footer>
-					<div class="centered-div">
-						<p>
-							{ localizer.T("protected_by") } <a href="https://github.com/TecharoHQ/anubis">Anubis</a> { localizer.T("protected_from") } <a
-	href="https://techaro.lol"
->Techaro</a>. { localizer.T("made_with") }.
-						</p>
-						<p>{ localizer.T("mascot_design") } <a href="https://bsky.app/profile/celphase.bsky.social">{ localizer.T("celphase") }</a>.</p>
-						if impressum != nil {
-							<p>
-								@templ.Raw(impressum.Footer)
-								-- <a href={ templ.SafeURL(fmt.Sprintf("%simprint", anubis.APIPrefix)) }>Imprint</a>
-							</p>
-						}
-						<p>{ localizer.T("version_info") } <code>{ anubis.Version }</code>.</p>
-					</div>
-				</footer>
+
+				<div id="title" class="centered-div">
+        <img
+          src={ "/.within.website/x/cmd/anubis/static/img/delta10.png?cacheBuster=" + anubis.Version }
+        />
+        <h1>{ title }</h1>
+        </div>
 			</main>
 		</body>
 	</html>
@@ -92,7 +110,8 @@ templ base(title string, body templ.Component, impressum *config.Impressum, chal
 
 templ errorPage(message, mail, code string, localizer *localization.SimpleLocalizer) {
 	<div class="centered-div">
-		<img id="image" alt="Sad Anubis" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/reject.webp?cacheBuster=" + anubis.Version }/>
+			src={ "/.within.website/x/cmd/anubis/static/img/delta10.png?cacheBuster=" + anubis.Version }
+		/>
 		<p>{ message }.</p>
 		if code != "" {
 			<code><pre>{ code }</pre></code>
@@ -113,10 +132,8 @@ templ errorPage(message, mail, code string, localizer *localization.SimpleLocali
 templ StaticHappy(localizer *localization.SimpleLocalizer) {
 	<div class="centered-div">
 		<img
-			style="display:none;"
 			style="width:100%;max-width:256px;"
-			src={ "/.within.website/x/cmd/anubis/static/img/happy.webp?cacheBuster=" +
-    anubis.Version }
+			src={ "/.within.website/x/cmd/anubis/static/img/delta10.png?cacheBuster=" + anubis.Version }
 		/>
 		<p>{ localizer.T("static_check_endpoint") }</p>
 	</div>
@@ -145,7 +162,7 @@ templ bench(localizer *localization.SimpleLocalizer) {
 			></tbody>
 		</table>
 		<div class="centered-div">
-			<img id="image" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/pensive.webp?cacheBuster=" + anubis.Version }/>
+			<img id="image" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/delta10.png?cacheBuster=" + anubis.Version }/>
 			<p id="status" style="max-width:256px">{ localizer.T("loading") }</p>
 			<script async type="module" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/js/bench.mjs?cacheBuster=" + anubis.Version }></script>
 			<div id="sparkline"></div>

@@ -11,6 +11,7 @@
     "assets": "go generate ./... && ./web/build.sh && ./xess/build.sh",
     "build": "npm run assets && go build -o ./var/anubis ./cmd/anubis",
     "dev": "npm run assets && go run ./cmd/anubis --use-remote-address --target http://localhost:3000",
+    "dev-no-redirect": "npm run assets && go run ./cmd/anubis --use-remote-address --target \"\" --metrics-bind \":9091\"",
     "container": "npm run assets && go run ./cmd/containerbuild",
     "package": "yeet",
     "lint": "make lint"
@@ -18,9 +19,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cssnano": "^7.1.2",
+    "cssnano": "^7.1.3",
     "cssnano-preset-advanced": "^7.0.10",
-    "esbuild": "^0.27.1",
+    "esbuild": "^0.27.3",
     "playwright": "^1.52.0",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "@aws-crypto/sha256-js": "^5.2.0",
+    "autoprefixer": "^10.4.27",
     "preact": "^10.28.0"
   }
 }
